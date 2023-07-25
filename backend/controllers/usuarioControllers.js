@@ -26,7 +26,29 @@ const obtenerUsuariosId = (req, res) => {
   });
 };
 
+const agregarUsuarios = (req,res) => {
 
+  const {nombre,apellido_paterno,apellido_materno,edad,numero_telefonico,email,direccion,fotografia} = req.body;
+
+    connection.query('INSERT INTO usuarios (nombre,apellido_paterno,apellido_materno,edad,numero_telefonico,email,direccion,fotografia) VALUES (?,?,?,?,?,?,?,?)',
+    [
+      nombre,
+      apellido_paterno,
+      apellido_materno,
+      edad,
+      numero_telefonico,
+      email,
+      direccion,
+      fotografia], (error,result) => {
+        if(error){
+          console.error("Error al agregar un usuario", error);
+          res.status(500).json({error:"Error al agregar usuarios"});
+        }else{
+          res.json({message:"Usuario agregado"});
+        }
+      });
+
+}
 
 /*
 INSERT INTO `usuarios` (`id_usuarios`, `nombre`, `apellido_paterno`, `apellido_materno`, `edad`, `numero_telefonico`, `email`, `direccion`, `fotografia`) VALUES (NULL, 'Luis Fernando', 'Villafaña', 'Rejón', '32', '9982328666', 'luisvr@gmail.com', 'Cancún, Qroo.', 'luis.jpeg');
@@ -35,4 +57,5 @@ INSERT INTO `usuarios` (`id_usuarios`, `nombre`, `apellido_paterno`, `apellido_m
 module.exports = {
     obtenerUsuarios,
     obtenerUsuariosId,
+    agregarUsuarios,
 }
