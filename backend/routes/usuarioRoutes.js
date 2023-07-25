@@ -7,5 +7,6 @@ router.get('/usuarios',usuarioControllers.obtenerUsuarios);
 router.get('/usuarios/:id_usuarios',usuarioControllers.obtenerUsuariosId);
 router.post('/usuarios',usuarioControllers.agregarUsuarios);
 router.delete('/usuarios/:id_usuarios',usuarioControllers.eliminarUsuariosId);
+router.put('/usuarios/:id_usuarios',usuarioControllers.actualizarUsuariosId);
 
 module.exports = router;
