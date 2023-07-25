@@ -47,15 +47,24 @@ const agregarUsuarios = (req,res) => {
           res.json({message:"Usuario agregado"});
         }
       });
-
 }
 
-/*
-INSERT INTO `usuarios` (`id_usuarios`, `nombre`, `apellido_paterno`, `apellido_materno`, `edad`, `numero_telefonico`, `email`, `direccion`, `fotografia`) VALUES (NULL, 'Luis Fernando', 'Villafaña', 'Rejón', '32', '9982328666', 'luisvr@gmail.com', 'Cancún, Qroo.', 'luis.jpeg');
-*/
+const eliminarUsuariosId = (req, res) => {
+  const id_usuarios = req.params.id_usuarios
+  
+  connection.query("DELETE FROM usuarios WHERE id_usuarios = ?",id_usuarios, (error, result) => {
+    if (error) {
+      console.error("Error al eliminar los registro de usuarios", error);
+      res.status(500).json({error:"Error al eliminar registros"});
+    }else{
+        res.json({message: "Usuario eliminado"});
+    }
+  });
+};
 
 module.exports = {
     obtenerUsuarios,
     obtenerUsuariosId,
     agregarUsuarios,
+    eliminarUsuariosId,
 }
