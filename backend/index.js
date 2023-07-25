@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-// ! Ruta del usuarioReoutes
+// ! Ruta del usuarioRoutes
 const usuarioRoutes = require('./routes/usuarioRoutes');
 
 const app = express();
